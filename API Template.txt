@@ -1,0 +1,101 @@
+LOGIN API
+POST http://localhost:5000/api/auth/login
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+Response
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5Y2UxZDFhZTQ1NDQ3MDdkOTg0MzY2ZCIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3NzU0NTg2NjQsImV4cCI6MTc3NTU0NTA2NH0.LVg0xCYweftgxD2cHCUvk71bbqiMstHW3JKQTRHbtXs",
+    "admin": {
+        "id": "69ce1d1ae4544707d984366d",
+        "username": "admin"
+    }
+}
+BANNER APIs
+GET http://localhost:5000/api/banners
+Response
+[
+    {
+        "_id": "69d29eef2e28eb2c6ee315a3",
+        "title": "Test banner",
+        "subtitle": "test subtitle",
+        "image": "1775410927733-4935397.png",
+        "order": 1,
+        "active": true,
+        "createdAt": "2026-04-05T17:42:07.749Z",
+        "updatedAt": "2026-04-05T17:42:07.749Z",
+        "__v": 0
+    },
+    {
+        "_id": "69d0e1be6d680cc13f70c203",
+        "title": "dwerewrew",
+        "subtitle": "",
+        "image": "1775296958597-42551567.png",
+        "order": 3,
+        "active": true,
+        "createdAt": "2026-04-04T10:02:38.626Z",
+        "updatedAt": "2026-04-04T10:02:38.626Z",
+        "__v": 0
+    }
+]
+
+CREATE BANNER (UPLOAD IMAGE)
+POST http://localhost:5000/api/banners
+Headers
+Authorization: Bearer YOUR_JWT_TOKEN
+| Key      | Type | Value           |
+| -------- | ---- | --------------- |
+| title    | Text | Test Banner     |
+| subtitle | Text | Sample subtitle |
+| active   | Text | true            |
+| order    | Text | 1               |
+| image    | File | (upload image)  |
+
+Response
+{
+  "_id": "69d300abc123456789",
+  "title": "Test Banner",
+  "subtitle": "Sample subtitle",
+  "image": "1775419999999-123456.png",
+  "order": 1,
+  "active": true,
+  "createdAt": "2026-04-06T10:00:00.000Z",
+  "updatedAt": "2026-04-06T10:00:00.000Z",
+  "__v": 0
+}
+
+UPDATE BANNER
+PUT http://localhost:5000/api/banners/:id
+Headers
+Authorization: Bearer YOUR_JWT_TOKEN
+| Key      | Type | Value                |
+| -------- | ---- | -------------------- |
+| title    | Text | Updated Banner       |
+| subtitle | Text | Updated subtitle     |
+| active   | Text | true                 |
+| order    | Text | 2                    |
+| image    | File | (optional new image) |
+
+Response
+{
+  "_id": "69d29eef2e28eb2c6ee315a3",
+  "title": "Updated Banner",
+  "subtitle": "Updated subtitle",
+  "image": "1775420000000-654321.png",
+  "order": 2,
+  "active": true,
+  "createdAt": "2026-04-05T17:42:07.749Z",
+  "updatedAt": "2026-04-06T11:00:00.000Z",
+  "__v": 0
+}
+
+DELETE BANNER
+DELETE http://localhost:5000/api/banners/:id
+Headers
+Authorization: Bearer YOUR_JWT_TOKEN
+Response
+{
+  "message": "Banner deleted"
+}
