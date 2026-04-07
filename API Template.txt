@@ -99,3 +99,128 @@ Response
 {
   "message": "Banner deleted"
 }
+
+GET ALL CONSUMER CARDS
+GET http://localhost:5000/api/consumer-cards
+Response
+[
+    {
+        "_id": "69d3955af21565898479f72a",
+        "titleEn": "Consumer Services",
+        "titleHi": "उपभोक्ता सेवाएं",
+        "icon": "FileText",
+        "colorClass": "blue",
+        "links": [
+            {
+                "labelEn": "Pay Bill",
+                "labelHi": "बिल भुगतान",
+                "url": "/pay-bill",
+                "_id": "69d3955af21565898479f72b"
+            },
+            {
+                "labelEn": "New Connection",
+                "labelHi": "नया कनेक्शन",
+                "url": "/new-connection",
+                "_id": "69d3955af21565898479f72c"
+            }
+        ],
+        "order": 1,
+        "createdAt": "2026-04-06T11:13:30.124Z",
+        "updatedAt": "2026-04-06T11:13:30.124Z",
+        "__v": 0
+    }
+]
+
+CREATE CONSUMER CARD
+POST http://localhost:5000/api/consumer-cards
+Headers Authorization: Bearer YOUR_JWT_TOKEN
+Body
+{
+  "titleEn": "Consumer Services",
+  "titleHi": "उपभोक्ता सेवाएं",
+  "icon": "FileText",
+  "colorClass": "blue",
+  "order": 1,
+  "links": [
+    {
+      "labelEn": "Pay Bill",
+      "labelHi": "बिल भुगतान",
+      "url": "/pay-bill"
+    },
+    {
+      "labelEn": "New Connection",
+      "labelHi": "नया कनेक्शन",
+      "url": "/new-connection"
+    }
+  ]
+}
+Response
+{
+  "_id": "69d400abc123456789",
+  "titleEn": "Consumer Services",
+  "titleHi": "उपभोक्ता सेवाएं",
+  "icon": "FileText",
+  "colorClass": "blue",
+  "links": [
+    {
+      "_id": "link1",
+      "labelEn": "Pay Bill",
+      "labelHi": "बिल भुगतान",
+      "url": "/pay-bill"
+    }
+  ],
+  "order": 1,
+  "createdAt": "2026-04-07T10:00:00.000Z",
+  "updatedAt": "2026-04-07T10:00:00.000Z",
+  "__v": 0
+}
+UPDATE CONSUMER CARD
+PUT http://localhost:5000/api/consumer-cards/:id
+Example:
+http://localhost:5000/api/consumer-cards/69d400abc123456789
+Headers Authorization: Bearer YOUR_JWT_TOKEN
+Body
+{
+  "titleEn": "Updated Services",
+  "titleHi": "अपडेटेड सेवाएं",
+  "icon": "Zap",
+  "colorClass": "green",
+  "order": 2,
+  "links": [
+    {
+      "labelEn": "View Bill",
+      "labelHi": "बिल देखें",
+      "url": "/view-bill"
+    }
+  ]
+}
+Response
+{
+  "_id": "69d400abc123456789",
+  "titleEn": "Updated Services",
+  "titleHi": "अपडेटेड सेवाएं",
+  "icon": "Zap",
+  "colorClass": "green",
+  "links": [
+    {
+      "_id": "link1",
+      "labelEn": "View Bill",
+      "labelHi": "बिल देखें",
+      "url": "/view-bill"
+    }
+  ],
+  "order": 2,
+  "createdAt": "2026-04-07T10:00:00.000Z",
+  "updatedAt": "2026-04-07T11:00:00.000Z",
+  "__v": 0
+}
+
+DELETE CONSUMER CARD
+DELETE http://localhost:5000/api/consumer-cards/:id
+Example:
+http://localhost:5000/api/consumer-cards/69d400abc123456789
+Headers Authorization: Bearer YOUR_JWT_TOKEN
+Response
+{
+  "message": "Card deleted"
+}
